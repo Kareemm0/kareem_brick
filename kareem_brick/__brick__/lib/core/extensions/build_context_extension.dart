@@ -22,4 +22,16 @@ extension BuildContextExtension on BuildContext {
 
   /// Returns the [textTheme] of the current context.
   TextTheme get textTheme => Theme.of(this).textTheme;
+
+  /// Returns the [TextDirection] of the current context.
+  TextDirection get direction =>
+      Directionality.maybeOf(this) ?? TextDirection.ltr;
+
+  /// Returns true if the current text direction is left-to-right.
+  /// Returns false if the current text direction is right-to-left.
+  bool get isLtr => direction == TextDirection.ltr;
+
+  /// Returns true if the current text direction is right-to-left.
+  /// Returns false if the current text direction is left-to-right.
+  bool get isRtl => !isLtr;
 }

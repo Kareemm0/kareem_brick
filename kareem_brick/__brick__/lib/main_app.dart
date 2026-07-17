@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart'
     show BlocProvider, MultiBlocProvider, BlocBuilder;
-
 import 'app/app.dart';
 import 'core/core.dart';
 import 'injection_container.dart' show getIt;
-import 'presentation/presentation.dart'
-    show AuthBloc, LanguageCubit, LanguageState;
+import 'presentation/blocs.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});

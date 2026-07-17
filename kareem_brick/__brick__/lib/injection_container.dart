@@ -2,10 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'app/app.dart';
 import 'core/core.dart';
-import 'domain/domain.dart';
+import 'domain/repos.dart';
 import 'infrastructure/infrastructure.dart';
-import 'presentation/presentation.dart';
+import 'presentation/blocs.dart';
 
 final getIt = GetIt.instance;
 
@@ -52,7 +53,9 @@ abstract class InjectionHelper {
     getIt.registerFactory<AuthRepo>(() => AuthRepoImpl(datasource: getIt()));
   }
 
-  static void injectCommands() {}
+  static void injectCommands() {
+    getIt.registerFactory<LoginContract>(() => LoginContractImpl(authRepo: getIt()));
+  }
 
   static void injectQueries() {}
 
@@ -60,8 +63,7 @@ abstract class InjectionHelper {
 
   static void injectBlocs() {
     getIt.registerFactory<AuthBloc>(() => AuthBloc(
-          repo: getIt(),
-          localStorage: getIt(),
+          getIt(),
         ));
     getIt.registerFactory<LanguageCubit>(() => LanguageCubit(
           localStorage: getIt(),

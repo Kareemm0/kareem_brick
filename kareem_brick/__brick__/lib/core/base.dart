@@ -5,4 +5,5 @@ export 'base/base_input.dart';
 export 'base/base_query.dart';
 export 'base/no_input.dart';
 export 'base/nothing.dart';
+export 'base/tot_route.dart';
 export 'base/typedefs.dart';

@@ -15,10 +15,7 @@ final class ChangeLanguageLoadingState extends LanguageState {
 
 final class ChangeLanguageFailureState extends LanguageState {
   final String msg;
-  const ChangeLanguageFailureState({
-    required super.locale,
-    required this.msg,
-  });
+  const ChangeLanguageFailureState({required super.locale, required this.msg});
 }
 
 final class ChangeLanguageSuccessState extends LanguageState {

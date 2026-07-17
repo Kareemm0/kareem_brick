@@ -1,11 +1,10 @@
 import 'dart:io';
-import 'package:dartz/dartz.dart';
+
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
-import '../../../core/core.dart' show ServerFailure;
-import '../../../core/network/api/api_consumer.dart';
-import '../../../core/network/api/status_codes.dart';
-import '../../../core/network/errors/exceptions.dart';
+import 'package:fpdart/fpdart.dart';
+import '../../../core/network.dart';
+
 
 class DioConsumer implements ApiConsumer {
   final Dio _client;
@@ -16,9 +15,9 @@ class DioConsumer implements ApiConsumer {
     required Dio client,
     required String baseUrl,
     required List<Interceptor> interceptors,
-  }) : _baseUrl = baseUrl,
-       _interceptors = interceptors,
-       _client = client {
+  })  : _baseUrl = baseUrl,
+        _interceptors = interceptors,
+        _client = client {
     (_client.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
       final client = HttpClient();
       client.badCertificateCallback =
@@ -68,10 +67,9 @@ class DioConsumer implements ApiConsumer {
       final response = await _client.post(
         path,
         options: Options(contentType: contentType, headers: headers),
-        data:
-            formDataEnabled
-                ? FormData.fromMap(body as Map<String, dynamic>)
-                : body,
+        data: formDataEnabled
+            ? FormData.fromMap(body as Map<String, dynamic>)
+            : body,
         queryParameters: queryParameters,
       );
       return Right(response.data);

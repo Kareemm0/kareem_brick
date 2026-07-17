@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../app/app.dart';
 import '../../../core/core.dart';
 

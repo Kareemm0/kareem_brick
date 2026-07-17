@@ -4,8 +4,7 @@ extension MapExtensions<K, V> on Map<K, V> {
       Map.fromEntries(entries.where((entry) => entry.value != null));
 
   // Merge two maps (with optional override)
-  Map<K, V> merge(Map<K, V> other, {bool overwrite = true}) => {
-        ...this,
-        ...other
-      }..removeWhere((k, v) => !overwrite && other.containsKey(k));
+  Map<K, V> merge(Map<K, V> other, {bool overwrite = true}) =>
+      {...this, ...other}
+        ..removeWhere((k, v) => !overwrite && other.containsKey(k));
 }

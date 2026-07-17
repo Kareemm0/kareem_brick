@@ -7,21 +7,35 @@ sealed class AuthState extends Equatable {
   List<Object> get props => [];
 }
 
-abstract final class AuthenticatedState extends AuthState {}
-
-abstract final class UnauthenticatedState extends AuthState {}
-
-final class AuthInitial extends UnauthenticatedState {}
-
-final class LoginLoadingState extends UnauthenticatedState {}
-
-final class LoginFailureState extends UnauthenticatedState {
-  final String msg;
-
-  LoginFailureState({required this.msg});
-
+final class AuthenticatedState extends AuthState {
   @override
-  List<Object> get props => [msg];
+  List<Object> get props => [];
 }
 
-final class LoginSuccessState extends AuthenticatedState {}
+final class UnAuthenticatedState extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
+final class AuthInitial extends UnAuthenticatedState {
+  @override
+  List<Object> get props => [];
+}
+
+final class LoginLoadingState extends UnAuthenticatedState {
+  @override
+  List<Object> get props => [];
+}
+
+final class LoginSuccessState extends AuthenticatedState {
+  @override
+  List<Object> get props => [];
+}
+
+final class LoginFailureState extends UnAuthenticatedState {
+  final String message;
+
+  LoginFailureState(this.message);
+  @override
+  List<Object> get props => [message];
+}

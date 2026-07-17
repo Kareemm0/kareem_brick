@@ -8,10 +8,10 @@ sealed class AuthEvent extends Equatable {
 }
 
 class LoginEvent extends AuthEvent {
-  final LoginInput inputs;
+  final BaseInput input;
 
-  const LoginEvent({required this.inputs});
+  const LoginEvent({required this.input});
 
   @override
-  List<Object> get props => [inputs];
+  List<Object> get props => [input];
 }

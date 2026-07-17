@@ -1,6 +1,8 @@
-extension NullableMapper<T, R> on T? {
-  R? map(R Function(T) mapper) => switch (this) {
-        final value? => mapper(value),
-        null => null,
-      };
+extension NullableMapper<T> on T? {
+  U? map<U>(U Function(T) mapper, {bool Function()? predicate}) {
+    return switch (this) {
+      T value => (predicate == null || predicate()) ? mapper(value) : null,
+      _ => null,
+    };
+  }
 }
